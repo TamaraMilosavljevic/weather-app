@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #212121;
+  --color-turquoise: #46e1b4;
+  --color-marine: #51999f;
+  --color-darkblue: #596391;
+  --gradient-main: linear-gradient(
+    135deg,
+    var(--color-turquoise),
+    var(--color-marine),
+    var(--color-darkblue)
+  );
+  --font-poppins: "Poppins", sans-serif;
+}
+
+:root {
+  font-family: "Poppins";
+}
