@@ -1,17 +1,21 @@
-import humidity from "../assets/humidity.png";
-import wind from "../assets/wind.png";
+import HumidityIcon from "../assets/humidity.png";
+import WindIcon from "../assets/wind.png";
+import type { WeatherConditionProps } from "../types/property.types";
 
-interface PropertyProps {
-  name: string;
-  value: string;
-}
 const propertyIcons: Record<string, string> = {
-  Humidity: humidity,
-  "Wind Speed": wind,
+  humidity: HumidityIcon,
+  windspeed: WindIcon,
 };
 
-const Property: React.FC<PropertyProps> = ({ name, value }) => {
+const Property: React.FC<WeatherConditionProps> = ({ name, value }) => {
   const icon = propertyIcons[name];
+  let ConditionTitle = "";
+  if (name === "windspeed") {
+    ConditionTitle = "Wind Speed";
+  } else {
+    ConditionTitle = "Humidity";
+  }
+
   return (
     <div className="flex flex-row justify-center align-center gap-3">
       <div className="text-white">
@@ -19,7 +23,7 @@ const Property: React.FC<PropertyProps> = ({ name, value }) => {
       </div>
       <div className="flex flex-col justify-start gap-1">
         <p className="text-2xl text-white font-medium">{value}</p>
-        <p className="text-xs text-white font-medium">{name}</p>
+        <p className="text-xs text-white font-medium">{ConditionTitle}</p>
       </div>
     </div>
   );
