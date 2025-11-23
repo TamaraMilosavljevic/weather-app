@@ -1,14 +1,14 @@
 import HumidityIcon from "../assets/humidity.png";
 import WindIcon from "../assets/wind.png";
-import type { WeatherConditionProps } from "../types/property.types";
+import type { WeatherConditionProps } from "../types/weathercondition.types";
 
-const propertyIcons: Record<string, string> = {
+const weatherConditionIcons: Record<string, string> = {
   humidity: HumidityIcon,
   windspeed: WindIcon,
 };
 
-const Property: React.FC<WeatherConditionProps> = ({ name, value }) => {
-  const icon = propertyIcons[name];
+const WeatherCondition: React.FC<WeatherConditionProps> = ({ name, value }) => {
+  const icon = weatherConditionIcons[name];
   let ConditionTitle = "";
   if (name === "windspeed") {
     ConditionTitle = "Wind Speed";
@@ -29,4 +29,4 @@ const Property: React.FC<WeatherConditionProps> = ({ name, value }) => {
   );
 };
 
-export default Property;
+export default WeatherCondition;
