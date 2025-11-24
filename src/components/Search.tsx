@@ -3,20 +3,20 @@ import search from "../assets/search.png";
 
 interface SearchProps {
   name: string;
+  setName: (newName: string) => void;
 }
 const searchIcons: Record<string, string> = {
   Search: search,
 };
 
-const Search: React.FC<SearchProps> = ({ name }) => {
+const Search: React.FC<SearchProps> = ({ name, setName }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const icon = searchIcons[name];
 
   const handleSearch = useCallback(() => {
     const value = inputRef.current?.value || "";
-    alert("Searching for:" + value);
-    console.log("search conducting for" + value);
-  }, [inputRef]);
+    setName(value);
+  }, [inputRef, setName]);
 
   return (
     <div className="flex flex-row justify-center align-center gap-4">
