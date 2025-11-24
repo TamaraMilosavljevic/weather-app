@@ -19,7 +19,7 @@ function App() {
         temperature: Math.floor(data.main.temp),
         windSpeed: data.wind.speed,
         location: data.name,
-        condition: data.weather[0].main,
+        icon: data.weather[0].icon,
       });
     } catch (error) {
       console.log("Error:", error);
@@ -33,11 +33,11 @@ function App() {
 
   return (
     <div className="w-full min-h-screen bg-primary flex items-center justify-center">
-      <div className="max-w-max py-10 px-7 flex flex-1 flex-col justify-center items-center gap-10 rounded-lg bg-linear-120 from-turquoise via-marine to-darkblue shadow-lg">
+      <div className="max-w-max max-h-max py-10 px-7 flex flex-1 flex-col justify-center items-center gap-10 rounded-lg bg-linear-120 from-turquoise via-marine to-darkblue shadow-lg">
         <Search name="Search" setName={setSearchValue} />
         <WeatherTemperature
-          location={weatherData?.location}
-          condition={weatherData?.condition}
+          location={weatherData?.location || "Find city"}
+          icon={weatherData?.icon}
           value={weatherData?.temperature}
         />
         <div className="flex sm:flex-row gap-8 flex-col">

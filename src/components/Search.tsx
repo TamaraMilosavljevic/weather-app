@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import search from "../assets/search.png";
 
 interface SearchProps {

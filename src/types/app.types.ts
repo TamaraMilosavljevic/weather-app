@@ -3,7 +3,7 @@ export default interface WeatherDataProps {
   temperature: number;
   windSpeed: number;
   location: string;
-  condition: string;
+  icon: string;
 }
 
 export interface WeatherDataResponse {
