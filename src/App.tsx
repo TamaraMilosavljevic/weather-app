@@ -43,11 +43,13 @@ function App() {
         <div className="flex sm:flex-row gap-8 flex-col">
           <WeatherCondition
             name="humidity"
-            value={`${weatherData?.humidity} %`}
+            value={weatherData?.humidity || 0}
+            unit="%"
           />
           <WeatherCondition
             name="windspeed"
-            value={`${weatherData?.windSpeed} km/h`}
+            value={weatherData?.windSpeed || 0}
+            unit="km/h"
           />
         </div>
       </div>

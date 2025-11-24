@@ -7,7 +7,11 @@ const weatherConditionIcons: Record<string, string> = {
   windspeed: WindIcon,
 };
 
-const WeatherCondition: React.FC<WeatherConditionProps> = ({ name, value }) => {
+const WeatherCondition: React.FC<WeatherConditionProps> = ({
+  name,
+  value,
+  unit,
+}) => {
   const icon = weatherConditionIcons[name];
   let ConditionTitle = "";
   if (name === "windspeed") {
@@ -22,7 +26,7 @@ const WeatherCondition: React.FC<WeatherConditionProps> = ({ name, value }) => {
         <img src={icon} alt={name} className="w-8 h-8" />
       </div>
       <div className="flex flex-col justify-start gap-1">
-        <p className="text-2xl text-white font-medium">{value}</p>
+        <p className="text-2xl text-white font-medium">{`${Math.floor(value)} ${unit}`}</p>
         <p className="text-xs text-white font-medium">{ConditionTitle}</p>
       </div>
     </div>
