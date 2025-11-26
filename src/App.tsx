@@ -1,25 +1,10 @@
 import Property from "./components/Property";
 import Search from "./components/Search";
 import Weather from "./components/Weather";
-import { useEffect } from "react";
+import { getData } from "./services/weather.service";
 
 function App() {
-  const getData = async (city: string) => {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_API_ID}`
-      );
-      const data = await response.json();
-      console.log(data);
-      console.log(import.meta.env.VITE_API_ID);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-    getData("Belgrade");
-  }, []);
+  getData("Belgrade");
 
   return (
     <div className="w-full min-h-screen bg-primary flex items-center justify-center">
