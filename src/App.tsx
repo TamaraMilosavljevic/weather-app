@@ -3,30 +3,23 @@ import Search from "./components/Search";
 import { useEffect, useState } from "react";
 import type WeatherDataProps from "./types/app.types";
 import WeatherTemperature from "./components/WeatherTemperature";
-import type { WeatherDataResponse } from "./types/app.types";
+import { getData } from "./services/weather.service";
 
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherDataProps>();
-  const getData = async (city: string) => {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_API_ID}`
-      );
-      const data: WeatherDataResponse = await response.json();
-      setWeatherData({
-        humidity: data.main.humidity,
-        temperature: Math.floor(data.main.temp),
-        windSpeed: data.wind.speed,
-        location: data.name,
-        condition: data.weather[0].main,
-      });
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
 
   useEffect(() => {
-    const fetchData = async () => getData("Stockholm+");
+    const fetchData = async () => {
+      const data = await getData("Stockholm");
+      if (data)
+        setWeatherData({
+          humidity: data.main.humidity,
+          temperature: Math.floor(data.main.temp),
+          windSpeed: data.wind.speed,
+          location: data.name,
+          condition: data.weather[0].main,
+        });
+    };
     fetchData();
   }, []);
 
