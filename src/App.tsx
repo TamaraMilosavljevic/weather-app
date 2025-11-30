@@ -3,31 +3,24 @@ import Search from "./components/Search";
 import { useEffect, useState } from "react";
 import type WeatherDataProps from "./types/app.types";
 import WeatherTemperature from "./components/WeatherTemperature";
-import type { WeatherDataResponse } from "./types/app.types";
+import { getData } from "./services/weather.service";
 
 function App() {
   const [weatherData, setWeatherData] = useState<WeatherDataProps>();
-  const [searchValue, setSearchValue] = useState<string>("");
-  const getData = async (city: string) => {
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_API_ID}`
-      );
-      const data: WeatherDataResponse = await response.json();
-      setWeatherData({
-        humidity: data.main.humidity,
-        temperature: Math.floor(data.main.temp),
-        windSpeed: data.wind.speed,
-        location: data.name,
-        icon: data.weather[0].icon,
-      });
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
+  const [searchValue, setSearchValue] = useState<string>("Belgrade");
 
   useEffect(() => {
-    const fetchData = async () => getData(searchValue);
+    const fetchData = async () => {
+      const data = await getData(searchValue);
+      if (data)
+        setWeatherData({
+          humidity: data.main.humidity,
+          temperature: Math.floor(data.main.temp),
+          windSpeed: data.wind.speed,
+          location: data.name,
+          icon: data.weather[0].icon,
+        });
+    };
     fetchData();
   }, [searchValue]);
 
