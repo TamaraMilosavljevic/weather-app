@@ -1,3 +1,5 @@
+import { getIconUrl } from "../constants";
+
 interface WeatherTemperatureProps {
   location?: string;
   value?: number;
@@ -11,11 +13,7 @@ const WeatherTemperature: React.FC<WeatherTemperatureProps> = ({
   return (
     <div className="flex flex-col justify-center align-center gap-6">
       <div className="text-white">
-        <img
-          src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
-          alt={icon}
-          className="w-36 h-36"
-        />
+        <img src={getIconUrl(icon)} alt={icon} className="w-36 h-36" />
       </div>
       <div className="flex flex-col justify-center align-center gap-2">
         <p className="text-6xl text-white font-medium text-center">
