@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { getIconUrl } from "../constants";
 
 interface WeatherTemperatureProps {
@@ -10,10 +11,12 @@ const WeatherTemperature: React.FC<WeatherTemperatureProps> = ({
   value = 0,
   icon = "10d",
 }) => {
+  const imgSrc = useMemo(() => getIconUrl(icon), [icon]);
+
   return (
     <div className="flex flex-col justify-center align-center gap-6">
-      <div className="text-white">
-        <img src={getIconUrl(icon)} alt={icon} className="w-36 h-36" />
+      <div className="flex flex-1 justify-center items-center text-white">
+        <img src={imgSrc} alt={icon} className="w-36 h-36" />
       </div>
       <div className="flex flex-col justify-center align-center gap-2">
         <p className="text-6xl text-white font-medium text-center">

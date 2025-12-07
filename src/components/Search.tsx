@@ -18,7 +18,7 @@ const Search: React.FC<SearchProps> = ({ name, setName }) => {
     setInputValue("");
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSearch();
