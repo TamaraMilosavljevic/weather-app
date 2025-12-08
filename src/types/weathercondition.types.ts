@@ -2,5 +2,6 @@ type Condition = "humidity" | "windspeed";
 
 export interface WeatherConditionProps {
   name: Condition;
-  value: string;
+  value: number;
+  unit: "km/h" | "%";
 }
