@@ -8,6 +8,6 @@ export const getData = async (city: string) => {
     const data: WeatherDataResponse = await response.json();
     return data;
   } catch (error) {
-    console.log("Error:", error);
+    throw new Error(`HTTP error! status: ${error}`);
   }
 };

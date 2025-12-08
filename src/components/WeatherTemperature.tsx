@@ -1,32 +1,22 @@
-import clear from "../assets/clear.png";
-import cloud from "../assets/cloud.png";
-import drizzle from "../assets/drizzle.png";
-import rain from "../assets/rain.png";
-import snow from "../assets/snow.png";
+import { useMemo } from "react";
+import { getIconUrl } from "../constants";
 
 interface WeatherTemperatureProps {
-  condition?: string;
   location?: string;
   value?: number;
+  icon?: string;
 }
-const weatherTemperatureIcons: Record<string, string> = {
-  Clear: clear,
-  Clouds: cloud,
-  Drizzle: drizzle,
-  Rain: rain,
-  Snow: snow,
-};
-
 const WeatherTemperature: React.FC<WeatherTemperatureProps> = ({
-  condition = "Clear",
   location,
   value = 0,
+  icon = "10d",
 }) => {
-  const icon = weatherTemperatureIcons[condition];
+  const imgSrc = useMemo(() => getIconUrl(icon), [icon]);
+
   return (
     <div className="flex flex-col justify-center align-center gap-6">
-      <div className="text-white">
-        <img src={icon} alt={condition} className="w-36 h-36" />
+      <div className="flex flex-1 justify-center items-center text-white">
+        <img src={imgSrc} alt={icon} className="w-36 h-36" />
       </div>
       <div className="flex flex-col justify-center align-center gap-2">
         <p className="text-6xl text-white font-medium text-center">
